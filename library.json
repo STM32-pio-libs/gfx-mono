@@ -1,0 +1,26 @@
+{
+  "name": "GFX-MONO",
+  "version": "0.1.0",
+  "description": "Lightweight monochrome graphics library for embedded systems: framebuffer-based 1bpp drawing (pixels, shapes, bitmaps, scalable glyphs) with pluggable display flush callbacks.",
+  "keywords": "stm32, monochrome, LCD, GFX, OLED, SSD1306",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/STM32-pio-libs/gfx-mono"
+  },
+  "authors":
+  [
+    {
+      "name": "Anurag Kumar Singh",
+      "email": "anurag3301.0x0@gmail.com",
+      "url": "https://github.com/anurag3301",
+      "maintainer": true
+    }
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/STM32-pio-libs",
+  "dependencies": {
+  },
+  "frameworks": "stm32cube",
+  "platforms": "ststm32"
+}
