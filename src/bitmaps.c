@@ -57,20 +57,17 @@ static const GFX_Bitmap GLYPHS_0_9[] = {
     GLYPH_DEF(GLYPH_5), GLYPH_DEF(GLYPH_6), GLYPH_DEF(GLYPH_7), GLYPH_DEF(GLYPH_8), GLYPH_DEF(GLYPH_9)
 };
 
-const GFX_Bitmap *Bitmap_GetGlyph(char ch)
-{
-    if ((ch >= 'A') && (ch <= 'Z'))
-    {
+const GFX_Bitmap *Bitmap_GetGlyph(char ch){
+    if ((ch >= 'A') && (ch <= 'Z')){
         return &GLYPHS_A_Z[(uint8_t)(ch - 'A')];
     }
-
-    if ((ch >= '0') && (ch <= '9'))
-    {
+    if ((ch >= '0') && (ch <= '9')){
         return &GLYPHS_0_9[(uint8_t)(ch - '0')];
     }
-
     return NULL;
 }
+
+
 
 #undef GLYPH_DEF
 #undef R
