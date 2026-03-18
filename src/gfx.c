@@ -292,6 +292,43 @@ int32_t GFX_DrawChar(GFX_Framebuffer *fb, char ch, int16_t x, int16_t y, uint16_
     return 0;
 }
 
+
+int32_t GFX_DrawStr(GFX_Framebuffer *fb, char *str, int16_t x, int16_t y, uint16_t target_height, uint8_t color){
+    if (GFX_IsReady(fb) == 0U){
+        return -1;
+    }
+    unsigned int len = strlen(str);
+    for(unsigned int i=0; i<len; i++){
+        const GFX_Bitmap *glyph = Bitmap_GetGlyph(str[i]);
+        GFX_Bitmap src;
+        GFX_Bitmap draw_bitmap;
+        uint8_t scaled_buffer[GFX_CHAR_MAX_BITMAP_BYTES];
+        if(glyph == NULL){
+            return -1;
+        }
+
+        src = *glyph;
+        draw_bitmap = src;
+
+        if ((target_height != 0U) && (target_height != src.height)){
+            if (GFX_ResizeBitmapKeepAspect(&src, target_height, scaled_buffer, sizeof(scaled_buffer), &draw_bitmap) != 0){
+                return -1;
+            }
+        }
+
+        for (uint16_t py = 0U; py < draw_bitmap.height; py++){
+            for (uint16_t px = 0U; px < draw_bitmap.width; px++){
+                if (gfx_bitmap_get_pixel(&draw_bitmap, px, py) != 0U){
+                    GFX_DrawPixel(fb, (int16_t)(x + (int16_t)px), (int16_t)(y + (int16_t)py), color);
+                }
+            }
+        }
+        x += draw_bitmap.width + (draw_bitmap.width/3);
+    }
+
+    return 0;
+}
+
 int32_t GFX_Present(const GFX_Framebuffer *fb)
 {
     if ((GFX_IsReady(fb) == 0U) || (fb->flush_cb == NULL))

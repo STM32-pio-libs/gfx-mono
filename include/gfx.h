@@ -81,6 +81,9 @@ int32_t GFX_ResizeBitmapKeepAspect(const GFX_Bitmap *src,
  */
 int32_t GFX_DrawChar(GFX_Framebuffer *fb, char ch, int16_t x, int16_t y, uint16_t target_height, uint8_t color);
 
+
+int32_t GFX_DrawStr(GFX_Framebuffer *fb, char *str, int16_t x, int16_t y, uint16_t target_height, uint8_t color);
+
 int32_t GFX_Present(const GFX_Framebuffer *fb);
 
 #ifdef __cplusplus
